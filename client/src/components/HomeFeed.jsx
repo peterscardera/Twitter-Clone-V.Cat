@@ -16,7 +16,7 @@ const HomeFeed = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
+            "Accept": "application/json"
           }
         });
 
@@ -35,14 +35,14 @@ const HomeFeed = () => {
   }, []);
 
   const tweetHandler = data => {
-    console.log(data);
+    // console.log(data);
     
     setTweetState(data.tweetsById);
     setIdState(data.tweetIds);
   };
 
   return (
-    <>
+    <React.Fragment>
       <Layout>
         {idState != "" &&
           tweetState != "" &&
@@ -50,7 +50,7 @@ const HomeFeed = () => {
             return <Tweets key={i} orderId={orderId} tweetState={tweetState} />;
           })}
       </Layout>
-    </>
+    </React.Fragment>
   );
 };
 

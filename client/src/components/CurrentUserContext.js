@@ -3,11 +3,10 @@ import React, { createContext, useReducer } from "react";
 export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = React.useState(null);
   const [currentUserData, setCurrentUserData] = React.useState(null);
   const [status, setSatus] = React.useState(false);
 
-   console.log(currentUserData);
+  //  console.log(currentUserData);
 
   React.useEffect(() => {
     const profileData = async () => {
@@ -19,7 +18,7 @@ export const CurrentUserProvider = ({ children }) => {
             Accept: "application/json"
           }
         });
-        console.log(data);
+        // console.log(data);
         if (data.status === 200) {
           let retrievedData = await data.json();
           setSatus(true);
@@ -35,7 +34,9 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, status }}>
+    <CurrentUserContext.Provider
+      value={{ currentUserData, setCurrentUserData, status }}
+    >
       {children}
     </CurrentUserContext.Provider>
   );
