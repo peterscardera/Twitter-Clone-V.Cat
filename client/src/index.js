@@ -5,11 +5,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { CurrentUserProvider } from "./components/CurrentUserContext";
+import { FeedContextProvider } from "./components/FeedContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <CurrentUserProvider>
-      <App />
+      <FeedContextProvider>
+        <App />
+      </FeedContextProvider>
     </CurrentUserProvider>
   </React.StrictMode>,
   document.getElementById("root")

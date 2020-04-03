@@ -1,8 +1,11 @@
 import React from "react";
+import { FeedContext } from "./FeedContext";
 
-const Liked = ({ tweetLikedStatus, setReFetch,refetch }) => {
+const Liked = ({ tweetLikedStatus}) => {
 
-console.log(tweetLikedStatus,"****")
+
+  const {  likerHandler } = React.useContext(FeedContext)
+
   const clickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
@@ -27,13 +30,11 @@ console.log(tweetLikedStatus,"****")
       console.log(data);
       if (data.status === 200) {
         let answer = await data.json();
-        let answerstring = !tweetLikedStatus.isLiked
-          ? "WE LIKED IT"
-          : "WE UNLIKED IT";
-        tweetLikedStatus.isliked = !tweetLikedStatus.isliked
-        setReFetch(!refetch)
-        console.log(answer, answerstring);
-        //setClickState(!clickState);
+       // console.log(answer)// the answer of the server should be success
+        likerHandler({ id: tweetLikedStatus.id, likeStatus: !tweetLikedStatus.isLiked
+        })
+
+  
       } else {
         console.log("error");
         throw Error("not 200");
@@ -42,6 +43,7 @@ console.log(tweetLikedStatus,"****")
       console.log("error", err);
     }
   };
+  console.log(tweetLikedStatus.isLiked , " IN LIKED BUTTON")
 
   return (
     <React.Fragment>

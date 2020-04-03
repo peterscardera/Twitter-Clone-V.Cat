@@ -2,14 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../constants";
 import { CurrentUserContext } from "./CurrentUserContext";
+import { FeedContext } from "./FeedContext";
 
-
-const TweetPoster = ({  setReFetch, refetch}) => {
+const TweetPoster = () => {
   const [state, setState] = React.useState("");
 
   const { currentUserData } = React.useContext(CurrentUserContext);
-
-
+  const { postHandler } = React.useContext(FeedContext);
 
   const postTweet = async () => {
     try {
@@ -21,10 +20,18 @@ const TweetPoster = ({  setReFetch, refetch}) => {
         },
         body: JSON.stringify({ status: state })
       });
-      console.log(data);
+      //if success fecth the new feed and bring it to the FE State to cause a re-render
       if (data.status === 200) {
-        console.log("POSTED ");
-        setReFetch(!refetch);
+        let dataWithPost = await fetch("/api/me/home-feed", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
+        });
+        let updatedFeed = await dataWithPost.json();
+        // console.log(updatedFeed)
+        postHandler(updatedFeed);
       } else {
         throw Error("not 200");
       }
@@ -42,8 +49,10 @@ const TweetPoster = ({  setReFetch, refetch}) => {
       <StyledDiv>Home</StyledDiv>
       <form onSubmit={submitHandler}>
         <label htmlFor="tweet"></label>
-        {currentUserData != null && <StyledAvatar src={currentUserData.profile.avatarSrc}/> }
-        
+        {currentUserData != null && (
+          <StyledAvatar src={currentUserData.profile.avatarSrc} />
+        )}
+
         <StyledTextarea
           maxLength={280}
           placeholder={"What's on your mind?"}
@@ -59,7 +68,6 @@ const TweetPoster = ({  setReFetch, refetch}) => {
           <StyledButton type="submit"> Meow </StyledButton>
         </StyledPost>
       </form>
-      {/* <img src={currentUserData.avatarSrc} /> */}
     </React.Fragment>
   );
 };
@@ -73,12 +81,11 @@ const StyledDiv = styled.div`
   font-weight: bold;
 `;
 const StyledTextarea = styled.textarea`
-  width: 65vw;
+  width: 55vw;
   height: 10vh;
   font-size: 1.7rem;
   border: none;
-  outline:none;
-
+  outline: none;
 
   ::placeholder {
     padding-top: 20px;
@@ -98,13 +105,12 @@ const StyledButton = styled.button`
 `;
 
 const StyledPost = styled.div`
-display:flex;
-justify-content: flex-end;
-`
-
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const StyledAvatar = styled.img`
-height:60px;
-width: 60px;
-border-radius: 50%;
-`
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+`;

@@ -1,8 +1,10 @@
 import React  from "react";
+import { FeedContext } from "./FeedContext";
 
-const Retweet = ({ tweetLikedStatus, setReFetch,refetch }) => {
+const Retweet = ({ tweetLikedStatus }) => {
 
-    console.log(tweetLikedStatus, "***********")
+  const { retweetHandler } = React.useContext(FeedContext)
+   
 
   const clickHandler = event => {
     event.preventDefault();
@@ -28,13 +30,8 @@ const Retweet = ({ tweetLikedStatus, setReFetch,refetch }) => {
       console.log(data);
       if (data.status === 200) {
         let answer = await data.json();
-        let answerstring = !tweetLikedStatus.isRetweeted
-          ? "WE LIKED IT"
-          : "WE UNLIKED IT";
-        tweetLikedStatus.isRetweeted = !tweetLikedStatus.isRetweeted
-        setReFetch(!refetch)
-        console.log(answer, answerstring);
-        //setClickState(!clickState);
+        // console.log(answer)
+        retweetHandler({id:tweetLikedStatus.id, retweetStatus: !tweetLikedStatus.isRetweeted })
       } else {
         console.log("error");
         throw Error("not 200");

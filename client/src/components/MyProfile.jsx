@@ -4,7 +4,7 @@ import { CurrentUserContext } from "./CurrentUserContext";
 
 const MyProfile = () => {
   const { currentUserData } = React.useContext(CurrentUserContext);
-  
+
   //currentUserData
   return (
     <React.Fragment>
@@ -25,13 +25,12 @@ const MyProfile = () => {
             <div> {currentUserData.profile.numFollowing}</div>
           </>
         )}
-         <div>
+        <div>
           <div> Tweets </div>
           <div> Media </div>
           <div> Likes </div>
         </div>
       </Layout>
-
     </React.Fragment>
   );
 };

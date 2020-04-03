@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
+import React from "react";
+import { COLORS } from "../constants";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Liked from './Liked'
 import Retweet from "./Retweet";
 
-const Tweets = ({ orderId, tweetState,setReFetch, refetch }) => {
- 
-// console.log(tweetState[orderId]);
-  // console.log(tweetState[orderId].id, "HEEEERREE***");
-  // {tweetState[orderId].media.length > 0 && (<img src={tweetState[orderId].media[0].url}/>) }
-  //tweetState[orderId].author[handle]
-  //tweetState[orderId].author[avatarSrc]
+
+const Tweets = ({ orderId, tweetState }) => {
+
+
+
 
   const history = useHistory();
   //console.log(history)
@@ -54,8 +51,8 @@ const Tweets = ({ orderId, tweetState,setReFetch, refetch }) => {
             )}
       
           </div>
-          <Liked setReFetch={setReFetch} refetch={refetch} tweetLikedStatus={tweetState[orderId]}></Liked>
-            <Retweet setReFetch={setReFetch} refetch={refetch} tweetLikedStatus={tweetState[orderId]}> </Retweet>
+          <Liked  tweetLikedStatus={tweetState[orderId]}></Liked>
+            <Retweet  tweetLikedStatus={tweetState[orderId]}> </Retweet>
 
         </SecondColumn>
       </MainContainer>
@@ -73,7 +70,8 @@ const MainContainer = styled.div`
   /* border: 2px solid black; */
 
   &:hover {
-    border: 1px solid red;
+    border: 1px solid ${COLORS.primary};
+    cursor: pointer;
   }
 `;
 const StyledAvatar = styled.img`
