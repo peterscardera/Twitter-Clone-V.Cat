@@ -6,7 +6,7 @@ import {bell} from 'react-icons-kit/feather/bell';
 import {user} from 'react-icons-kit/feather/user';
 
 
-const SideIconContainer = withBaseIcon({ size: 30, style: { color: 'pink'}})
+const SideIconContainer = withBaseIcon({ size: 30, style: { color: 'black', paddingRight:"10px"  }   })
 
 
 

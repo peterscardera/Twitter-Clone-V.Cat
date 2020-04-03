@@ -6,7 +6,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUserData, setCurrentUserData] = React.useState(null);
   const [status, setSatus] = React.useState(false);
 
-  //  console.log(currentUserData);
+  console.log(currentUserData);
 
   React.useEffect(() => {
     const profileData = async () => {

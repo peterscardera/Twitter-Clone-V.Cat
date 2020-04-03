@@ -1,8 +1,9 @@
-import React from "react";
+import React  from "react";
 
-const Liked = ({ tweetLikedStatus, setReFetch,refetch }) => {
+const Retweet = ({ tweetLikedStatus, setReFetch,refetch }) => {
 
-console.log(tweetLikedStatus,"****")
+    console.log(tweetLikedStatus, "***********")
+
   const clickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
@@ -14,23 +15,23 @@ console.log(tweetLikedStatus,"****")
    
 
     try {
-      let data = await fetch(`/api/tweet/${tweetLikedStatus.id}/like`, {
+      let data = await fetch(`/api/tweet/${tweetLikedStatus.id}/retweet`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
         },
         body: JSON.stringify({
-          like: !tweetLikedStatus.isLiked
+          retweet: !tweetLikedStatus.isRetweeted
         })
       });
       console.log(data);
       if (data.status === 200) {
         let answer = await data.json();
-        let answerstring = !tweetLikedStatus.isLiked
+        let answerstring = !tweetLikedStatus.isRetweeted
           ? "WE LIKED IT"
           : "WE UNLIKED IT";
-        tweetLikedStatus.isliked = !tweetLikedStatus.isliked
+        tweetLikedStatus.isRetweeted = !tweetLikedStatus.isRetweeted
         setReFetch(!refetch)
         console.log(answer, answerstring);
         //setClickState(!clickState);
@@ -45,17 +46,17 @@ console.log(tweetLikedStatus,"****")
 
   return (
     <React.Fragment>
-      {tweetLikedStatus.isLiked ? (
+      {tweetLikedStatus.isRetweeted ? (
         <button style={{ backgroundColor: "green" }} onClick={clickHandler}>
-          LIKED 
+          RETWEETED 
         </button>
       ) : (
         <button style={{ backgroundColor: "red" }} onClick={clickHandler}>
-          LIKE
+          RETWEET
         </button>
       )}
     </React.Fragment>
   );
 };
 
-export default Liked;
+export default Retweet;

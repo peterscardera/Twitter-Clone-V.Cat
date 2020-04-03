@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Liked from './Liked'
+import Retweet from "./Retweet";
 
-const Tweets = ({ orderId, tweetState }) => {
- console.log(tweetState[orderId]);
+const Tweets = ({ orderId, tweetState,setReFetch, refetch }) => {
+ 
+// console.log(tweetState[orderId]);
   // console.log(tweetState[orderId].id, "HEEEERREE***");
   // {tweetState[orderId].media.length > 0 && (<img src={tweetState[orderId].media[0].url}/>) }
   //tweetState[orderId].author[handle]
@@ -50,8 +52,10 @@ const Tweets = ({ orderId, tweetState }) => {
             {tweetState[orderId].media.length > 0 && (
               <StyledImgPost src={tweetState[orderId].media[0].url} />
             )}
-            <Liked tweetLikedStatus={tweetState[orderId]}></Liked>
+      
           </div>
+          <Liked setReFetch={setReFetch} refetch={refetch} tweetLikedStatus={tweetState[orderId]}></Liked>
+            <Retweet setReFetch={setReFetch} refetch={refetch} tweetLikedStatus={tweetState[orderId]}> </Retweet>
 
         </SecondColumn>
       </MainContainer>
@@ -65,7 +69,8 @@ const MainContainer = styled.div`
   grid-template-columns: 60px 1fr;
   grid-template-rows: 1fr;
   grid-row-gap: 60px;
-  border: 2px solid black;
+  border-top: 1px solid grey;
+  /* border: 2px solid black; */
 
   &:hover {
     border: 1px solid red;

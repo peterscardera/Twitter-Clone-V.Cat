@@ -4,10 +4,10 @@ import { CurrentUserContext } from "./CurrentUserContext";
 
 const MyProfile = () => {
   const { currentUserData } = React.useContext(CurrentUserContext);
-  console.log(currentUserData);
+  
   //currentUserData
   return (
-    <>
+    <React.Fragment>
       <Layout>
         {currentUserData != null && (
           <>
@@ -32,7 +32,7 @@ const MyProfile = () => {
         </div>
       </Layout>
 
-    </>
+    </React.Fragment>
   );
 };
 

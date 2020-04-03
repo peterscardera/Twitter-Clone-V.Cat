@@ -11,6 +11,10 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
+    font-size: 1rem;
+  }
+  textarea {
+    resize:none;
   }
 
 
@@ -60,6 +64,7 @@ export default createGlobalStyle`
     font-family: sans-serif;
     /* background: #222;
     color: white; */
+    
   }
 
 `;

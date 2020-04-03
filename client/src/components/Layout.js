@@ -17,5 +17,5 @@ export default Layout
 
 const StyledContainer = styled.div`
 display:flex;
-/* background-color: red; */
+
 `

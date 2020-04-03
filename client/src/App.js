@@ -8,12 +8,13 @@ import MyProfile from "./components/MyProfile";
 import Followers from "./components/Followers";
 import Following from "./components/Following";
 import GlobalStyles from "./components/GlobalStyles";
+import { ReactComponent as Logo } from "./Assets/logo.svg";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
 const App = () => {
-  const { status } = React.useContext(CurrentUserContext);
+  const { status} = React.useContext(CurrentUserContext);
 
   return (
     <React.Fragment>
@@ -55,7 +56,7 @@ const App = () => {
             </Switch>
           </Router>
         ) : (
-          "LOADING"
+          <Logo />
         )}
       </div>
     </React.Fragment>
