@@ -1,20 +1,18 @@
-import React  from "react";
+import React from "react";
 import { FeedContext } from "./FeedContext";
+import TweetActionIcon from "./TweetActionIcon";
 
 const Retweet = ({ tweetLikedStatus }) => {
-
-  const { retweetHandler } = React.useContext(FeedContext)
-   
+  const { retweetHandler } = React.useContext(FeedContext);
 
   const clickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
     likeUnlike(); //**CALLS THE ASYBC FUNCTION TO FETCH*****/
   };
- 
+
   const likeUnlike = async () => {
     //-----------------IF CLICKED----------
-   
 
     try {
       let data = await fetch(`/api/tweet/${tweetLikedStatus.id}/retweet`, {
@@ -31,7 +29,10 @@ const Retweet = ({ tweetLikedStatus }) => {
       if (data.status === 200) {
         let answer = await data.json();
         // console.log(answer)
-        retweetHandler({id:tweetLikedStatus.id, retweetStatus: !tweetLikedStatus.isRetweeted })
+        retweetHandler({
+          id: tweetLikedStatus.id,
+          retweetStatus: !tweetLikedStatus.isRetweeted
+        });
       } else {
         console.log("error");
         throw Error("not 200");
@@ -44,13 +45,13 @@ const Retweet = ({ tweetLikedStatus }) => {
   return (
     <React.Fragment>
       {tweetLikedStatus.isRetweeted ? (
-        <button style={{ backgroundColor: "green" }} onClick={clickHandler}>
-          RETWEETED 
-        </button>
+        <div onClick={clickHandler}>
+          <TweetActionIcon kind="retweet" size={30} color={"green"} />
+        </div>
       ) : (
-        <button style={{ backgroundColor: "red" }} onClick={clickHandler}>
-          RETWEET
-        </button>
+        <div onClick={clickHandler} >
+          <TweetActionIcon kind="retweet" size={30} color={"black"} />
+        </div>
       )}
     </React.Fragment>
   );

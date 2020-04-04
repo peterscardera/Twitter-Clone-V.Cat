@@ -81,6 +81,7 @@ const StyledDiv = styled.div`
   font-weight: bold;
 `;
 const StyledTextarea = styled.textarea`
+  padding: 30px 0 60px 0;
   width: 55vw;
   height: 10vh;
   font-size: 1.7rem;
@@ -88,7 +89,7 @@ const StyledTextarea = styled.textarea`
   outline: none;
 
   ::placeholder {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 60px;
     font-size: 1.7rem;
     opacity: 0.3;

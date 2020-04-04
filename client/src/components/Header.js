@@ -5,37 +5,47 @@ import styled from "styled-components";
 import { HomeIcon, BookmarkIcon, BellIcon, UserIcon } from "./headerIcons";
 import { ReactComponent as Logo } from "../Assets/logo.svg";
 
+import { CurrentUserContext } from "./CurrentUserContext";
+
 const Header = () => {
+  const { currentUserData } = React.useContext(CurrentUserContext);
+  console.log(currentUserData, 'CURRENTUSER IN HEADER****')
   return (
-    <Styledheader>
-      <nav>
-        <ListItems>
-          <StyledLi>
-            <Logo />
-          </StyledLi>
-          <StyledLi>
-            <NavBarLink to="/">
-              <HomeIcon /> Home
-            </NavBarLink>
-          </StyledLi>
-          <StyledLi>
-            <NavBarLink to="/me">
-              <UserIcon /> Profile
-            </NavBarLink>
-          </StyledLi>
-          <StyledLi>
-            <NavBarLink to="/notifications">
-              <BellIcon /> Notifications
-            </NavBarLink>
-          </StyledLi>
-          <StyledLi>
-            <NavBarLink to="/Bookmarks">
-              <BookmarkIcon /> Bookmarks
-            </NavBarLink>
-          </StyledLi>
-        </ListItems>
-      </nav>
-    </Styledheader>
+    <>
+      {currentUserData != null && (
+        <Styledheader>
+          <nav>
+            <ListItems>
+              <StyledLi>
+                <Logo />
+              </StyledLi>
+              <StyledLi>
+                <NavBarLink to="/">
+                  <HomeIcon /> Home
+                </NavBarLink>
+              </StyledLi>
+              <StyledLi>
+                <NavBarLink
+                  to={`/profile/${currentUserData.profile.handle}`}
+                >
+                  <UserIcon /> Profile
+                </NavBarLink>
+              </StyledLi>
+              <StyledLi>
+                <NavBarLink to="/notifications">
+                  <BellIcon /> Notifications
+                </NavBarLink>
+              </StyledLi>
+              <StyledLi>
+                <NavBarLink to="/Bookmarks">
+                  <BookmarkIcon /> Bookmarks
+                </NavBarLink>
+              </StyledLi>
+            </ListItems>
+          </nav>
+        </Styledheader>
+      )}
+    </>
   );
 };
 
@@ -63,11 +73,8 @@ const ListItems = styled.ul`
 
 const StyledLi = styled.li`
   margin: 25px 0 0 35%;
- 
 
-&:hover {
-  background:#ECE6FF;
-  
-  
-}
+  &:hover {
+    background: #ece6ff;
+  }
 `;

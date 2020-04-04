@@ -39,7 +39,7 @@ const App = () => {
                 <TweetDetails></TweetDetails>
               </Route>
 
-              <Route exact path="/me">
+              <Route exact path="/">
                 <MyProfile></MyProfile>
               </Route>
 

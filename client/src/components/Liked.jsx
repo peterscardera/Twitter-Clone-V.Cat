@@ -1,20 +1,18 @@
 import React from "react";
 import { FeedContext } from "./FeedContext";
+import Heart from "./Heart";
 
-const Liked = ({ tweetLikedStatus}) => {
-
-
-  const {  likerHandler } = React.useContext(FeedContext)
+const Liked = ({ tweetLikedStatus }) => {
+  const { likerHandler } = React.useContext(FeedContext);
 
   const clickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
     likeUnlike(); //**CALLS THE ASYBC FUNCTION TO FETCH*****/
   };
- 
+
   const likeUnlike = async () => {
     //-----------------IF CLICKED----------
-   
 
     try {
       let data = await fetch(`/api/tweet/${tweetLikedStatus.id}/like`, {
@@ -30,11 +28,11 @@ const Liked = ({ tweetLikedStatus}) => {
       console.log(data);
       if (data.status === 200) {
         let answer = await data.json();
-       // console.log(answer)// the answer of the server should be success
-        likerHandler({ id: tweetLikedStatus.id, likeStatus: !tweetLikedStatus.isLiked
-        })
-
-  
+        // console.log(answer)// the answer of the server should be success
+        likerHandler({
+          id: tweetLikedStatus.id,
+          likeStatus: !tweetLikedStatus.isLiked
+        });
       } else {
         console.log("error");
         throw Error("not 200");
@@ -43,19 +41,19 @@ const Liked = ({ tweetLikedStatus}) => {
       console.log("error", err);
     }
   };
-  console.log(tweetLikedStatus.isLiked , " IN LIKED BUTTON")
+  console.log(tweetLikedStatus.isLiked, " IN LIKED BUTTON");
 
   return (
     <React.Fragment>
       {tweetLikedStatus.isLiked ? (
-        <button style={{ backgroundColor: "green" }} onClick={clickHandler}>
-          LIKED 
-        </button>
+        <div onClick={clickHandler}>
+          <Heart width={30} isToggled={true} />
+        </div>
       ) : (
-        <button style={{ backgroundColor: "red" }} onClick={clickHandler}>
-          LIKE
-        </button>
+        <div onClick={clickHandler}> <Heart width={30}/>  </div>
+         
       )}
+      {/* <FaRegHeart></FaRegHeart> */}
     </React.Fragment>
   );
 };
