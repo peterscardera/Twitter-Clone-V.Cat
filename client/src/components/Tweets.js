@@ -2,15 +2,10 @@ import React from "react";
 import { COLORS } from "../constants";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import Liked from './Liked'
+import Liked from "./Liked";
 import Retweet from "./Retweet";
 
-
 const Tweets = ({ orderId, tweetState }) => {
-
-
-
-
   const history = useHistory();
   //console.log(history)
 
@@ -18,7 +13,7 @@ const Tweets = ({ orderId, tweetState }) => {
     history.push(`/tweet/${tweetState[orderId].id}`);
   };
 
-  const handleLink = event => {
+  const handleLink = (event) => {
     // react has the event by default console.log(event);
 
     event.preventDefault();
@@ -38,9 +33,9 @@ const Tweets = ({ orderId, tweetState }) => {
 
         <SecondColumn>
           <FirstContainer>
-            <div onClick={handleLink}>
-              <strong>{tweetState[orderId].author.displayName} </strong>{" "}
-            </div>
+            <StyledHandle onClick={handleLink}>
+              {tweetState[orderId].author.displayName} 
+            </StyledHandle>
             <div> @{tweetState[orderId].author.handle} </div>
             <div> {tweetState[orderId].timestamp} </div>
           </FirstContainer>
@@ -49,11 +44,9 @@ const Tweets = ({ orderId, tweetState }) => {
             {tweetState[orderId].media.length > 0 && (
               <StyledImgPost src={tweetState[orderId].media[0].url} />
             )}
-      
           </div>
-          <Liked  tweetLikedStatus={tweetState[orderId]}></Liked>
-            <Retweet  tweetLikedStatus={tweetState[orderId]}> </Retweet>
-
+          <Liked tweetLikedStatus={tweetState[orderId]}></Liked>
+          <Retweet tweetLikedStatus={tweetState[orderId]}> </Retweet>
         </SecondColumn>
       </MainContainer>
     </React.Fragment>
@@ -66,11 +59,12 @@ const MainContainer = styled.div`
   grid-template-columns: 60px 1fr;
   grid-template-rows: 1fr;
   grid-row-gap: 60px;
-  border-top: 1px solid grey;
+  border-top: 1px solid ${COLORS.borders};
+
   /* border: 2px solid black; */
 
   &:hover {
-    border: 1px solid ${COLORS.primary};
+    background: ${COLORS.borders};
     cursor: pointer;
   }
 `;
@@ -81,7 +75,7 @@ const StyledAvatar = styled.img`
 `;
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 400;
+  width: 400px;
   height: 300px;
 `;
 const FirstContainer = styled.div`
@@ -89,3 +83,14 @@ const FirstContainer = styled.div`
 `;
 
 const SecondColumn = styled.div``;
+
+
+const StyledHandle = styled.div`
+font-weight: bold;
+
+&:hover {
+  text-decoration: underline
+}
+
+
+`

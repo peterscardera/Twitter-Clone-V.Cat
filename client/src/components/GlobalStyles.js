@@ -1,17 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 
+
 export default createGlobalStyle`
   *,
   *:before,
   *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Roboto'
+    
   }
 
   html, body {
     max-width: 100vw;
-    font-size: 1rem;
+    background: RGBA(25,183,234,0.03);
+
   }
   textarea {
     resize:none;
@@ -61,7 +63,9 @@ export default createGlobalStyle`
 
   body {
     line-height: 1.25;
-    font-family: sans-serif;
+
+    font-size: 1rem;
+    font-family: 'Merriweather', serif;
     /* background: #222;
     color: white; */
     

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "./Layout";
+import { COLORS } from "../constants";
 import styled from "styled-components";
 import Tweets from "./Tweets";
 import TweetPoster from "./TweetPoster";
@@ -37,8 +38,8 @@ export default HomeFeed;
 
 const StyledFeed = styled.div`
   width: 60vw;
-  border-right: 1px solid grey;
-  /* background: red; */
+  border-right: 1px solid ${COLORS.borders};
+ 
 `;
 
 const StyledSpan = styled.span``;

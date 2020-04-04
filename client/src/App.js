@@ -38,11 +38,6 @@ const App = () => {
               <Route exact path="/tweet/:tweetID">
                 <TweetDetails></TweetDetails>
               </Route>
-
-              <Route exact path="/">
-                <MyProfile></MyProfile>
-              </Route>
-
               <Route exact path="/profile/:profileId">
                 <FriendProfile></FriendProfile>
               </Route>

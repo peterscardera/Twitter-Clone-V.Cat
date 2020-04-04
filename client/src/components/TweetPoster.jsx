@@ -16,7 +16,7 @@ const TweetPoster = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          "Accept": "application/json"
         },
         body: JSON.stringify({ status: state })
       });
@@ -75,10 +75,11 @@ const TweetPoster = () => {
 export default TweetPoster;
 
 const StyledDiv = styled.div`
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid ${COLORS.borders};
   padding: 10px 0 10px 20px;
   color: black;
   font-weight: bold;
+  font-size: 1.5rem;
 `;
 const StyledTextarea = styled.textarea`
   padding: 30px 0 60px 0;
@@ -87,6 +88,7 @@ const StyledTextarea = styled.textarea`
   font-size: 1.7rem;
   border: none;
   outline: none;
+  background: none;
 
   ::placeholder {
     padding-top: 10px;

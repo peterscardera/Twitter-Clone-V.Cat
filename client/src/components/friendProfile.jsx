@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { COLORS } from "../constants";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const FriendProfile = () => {
-  const [clickedProfileState, setClickedProfileState] = React.useState(null);
-  const [tweetFeed, setTweetFeed] = React.useState("");
-  //  const { currentUserData }  = React.useContext(CurrentUserContext)
+  const [clickedProfileState, setClickedProfileState] = useState(null);
+  const [tweetFeed, setTweetFeed] = useState("");
+
 
   let { profileId } = useParams();
 
@@ -19,8 +19,8 @@ const FriendProfile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
-          }
+            Accept: "application/json",
+          },
         });
         console.log(data);
         if (data.status === 200) {
@@ -34,7 +34,7 @@ const FriendProfile = () => {
       }
     };
     clickedProfile();
-  }, []);
+  }, [profileId]);
 
   useEffect(() => {
     const feedRetriever = async () => {
@@ -43,8 +43,8 @@ const FriendProfile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
-          }
+            Accept: "application/json",
+          },
         });
         console.log(data);
         if (data.status === 200) {
@@ -59,7 +59,7 @@ const FriendProfile = () => {
     };
 
     feedRetriever();
-  }, []);
+  }, [profileId]);
 
   console.log(tweetFeed.tweetsById, "****");
 
@@ -68,44 +68,60 @@ const FriendProfile = () => {
       <Layout>
         {clickedProfileState != null && (
           <>
-            <BannerContainer>
-              <ImgBanner src={clickedProfileState.profile.bannerSrc} />
-              <ImgAvatar src={clickedProfileState.profile.avatarSrc} />
-            </BannerContainer>
-
-            <div> {clickedProfileState.profile.displayName}</div>
-            <div> {clickedProfileState.profile.handle}</div>
-            <div> {clickedProfileState.profile.bio}</div>
-            <div> {clickedProfileState.profile.location}</div>
-            <div> {clickedProfileState.profile.joined}</div>
-            <Link to={`/${clickedProfileState.profile.handle}/followers`}>
-              Followers {clickedProfileState.profile.numFollowers}
-            </Link>
-            <Link to={`/${clickedProfileState.profile.handle}/following`}>
-              Following {clickedProfileState.profile.numFollowing}
-            </Link>
+            <Profile>
+              <div>
+                <BannerImg src={clickedProfileState.profile.bannerSrc} />
+                <AvatarImg src={clickedProfileState.profile.avatarSrc} />
+              </div>
+              <MiddleContainer>
+                <DisplayName>
+                  {" "}
+                  {clickedProfileState.profile.displayName}
+                </DisplayName>
+                <HandleName> {clickedProfileState.profile.handle}</HandleName>
+                <BioContainer>
+                  <div> {clickedProfileState.profile.bio}</div>
+                  <div>
+                    <div> {clickedProfileState.profile.location}</div>
+                    <div> {clickedProfileState.profile.joined}</div>
+                  </div>
+                  <Follows>
+                    <Link
+                      to={`/${clickedProfileState.profile.handle}/followers`}
+                    >
+                      Followers {clickedProfileState.profile.numFollowers}
+                    </Link>
+                    <Link
+                      to={`/${clickedProfileState.profile.handle}/following`}
+                    >
+                      Following {clickedProfileState.profile.numFollowing}
+                    </Link>
+                  </Follows>
+                </BioContainer>
+              </MiddleContainer>
+              <ActionBar>
+                <StyledButton> Tweets </StyledButton>
+                <StyledButton> Media </StyledButton>
+                <StyledButton> Likes </StyledButton>
+              </ActionBar>
+            </Profile>
           </>
         )}
 
-        <ActionBar>
-          <div> Tweets </div>
-          <div> Media </div>
-          <div> Likes </div>
-        </ActionBar>
         {tweetFeed != "" &&
           tweetFeed.tweetIds.map((item, i) => {
             return (
               <React.Fragment>
                 <MainContainer>
                   <FirstRow>
-                    <StyledAvatar
+                    {/* <AvatarImg
                       src={tweetFeed.tweetsById[item].author.avatarSrc}
-                    />
+                    /> */}
                     <div>{tweetFeed.tweetsById[item].author.displayName}</div>
                     <div>@{tweetFeed.tweetsById[item].author.handle}</div>
                     <div>{tweetFeed.tweetsById[item].timestamp}</div>
                   </FirstRow>
-                    <div>{tweetFeed.tweetsById[item].status}</div>
+                  <div>{tweetFeed.tweetsById[item].status}</div>
                   <div>
                     {tweetFeed.tweetsById[item].media.length > 0 && (
                       <StyledImgPost
@@ -127,50 +143,76 @@ const FriendProfile = () => {
 
 export default FriendProfile;
 
-const BannerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const Profile = styled.div`
+  height: 2000px;
+  margin-left: 20px;
 `;
 
-const ImgBanner = styled.img`
-  z-index: 1;
+const BannerImg = styled.img`
+  max-width: 100%;
   position: relative;
 `;
-const ImgAvatar = styled.img`
+const AvatarImg = styled.img`
   border-radius: 50%;
+  width: 200px;
+  height: 200px;
   border: 2px white solid;
-  width: 10%;
-  z-index: 2;
   position: absolute;
+  top: 200px;
+  margin-left: 20px;
+
+  display: block;
+`;
+const DisplayName = styled.div`
+  font-weight: bold;
+`;
+
+const MiddleContainer = styled.div`
+  margin-top: 10%;
+  font-size: 1.2rem;
+`;
+
+const HandleName = styled.div`
+  color: grey;
+`;
+const BioContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* background: red; */
+  height: 120px;
+`;
+
+const Follows = styled.div`
+  display: flex;
 `;
 
 const ActionBar = styled.div`
   display: flex;
+  height: 60px;
   justify-content: space-between;
-  color: purple;
+
+  border-bottom: 0.2px solid lightgrey;
+`;
+const StyledButton = styled.button`
+  color: ${COLORS.primary};
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
   font-weight: bold;
-  border-bottom: 1px grey groove;
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
 `;
 
-const MainContainer = styled.div`
-  border: 2px solid black;
-
-  /* &:hover {
-    border: 1px solid red;
-  } */
-`;
-
-const FirstRow = styled.div`
-  display: flex;
-`;
-
-const StyledAvatar = styled.img`
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-`;
 const StyledImgPost = styled.img`
   border-radius: 15px;
   width: 400;
   height: 300px;
 `;
+
+const MainContainer = styled.div``;
+
+const FirstRow= styled.div``
+

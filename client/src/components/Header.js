@@ -7,6 +7,13 @@ import { ReactComponent as Logo } from "../Assets/logo.svg";
 
 import { CurrentUserContext } from "./CurrentUserContext";
 
+//for pot modal
+
+///on click trigger modal. which triggers post 
+
+
+
+
 const Header = () => {
   const { currentUserData } = React.useContext(CurrentUserContext);
   console.log(currentUserData, 'CURRENTUSER IN HEADER****')
@@ -53,7 +60,7 @@ export default Header;
 
 const NavBarLink = styled(NavLink)`
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: black;
   &.active {
@@ -64,6 +71,7 @@ const NavBarLink = styled(NavLink)`
 const Styledheader = styled.header`
   min-width: 20%;
   border-right: 1px solid grey;
+  /* background:red; */
 `;
 const ListItems = styled.ul`
   display: flex;
