@@ -4,7 +4,6 @@ import Heart from "./Heart";
 
 const Liked = ({ tweetLikedStatus }) => {
   const { likerHandler } = React.useContext(FeedContext);
-
   const clickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
@@ -41,7 +40,7 @@ const Liked = ({ tweetLikedStatus }) => {
       console.log("error", err);
     }
   };
-  console.log(tweetLikedStatus.isLiked, " IN LIKED BUTTON");
+  // console.log(tweetLikedStatus.isLiked, " IN LIKED BUTTON");
 
   return (
     <React.Fragment>

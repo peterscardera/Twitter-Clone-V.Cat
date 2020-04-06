@@ -103,11 +103,12 @@ const ActionBar = styled.div`
   display: flex;
   height: 60px;
   justify-content: space-between;
- 
+
   border-bottom:.2px solid lightgrey;
 `;
 const StyledButton = styled.button`
 color: ${COLORS.primary};
+/* background: RGBA(25,183,234,0.03); */
 outline: none;
 width: 100%;
 font-size: 1.2rem;

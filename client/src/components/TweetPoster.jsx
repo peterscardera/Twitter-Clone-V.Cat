@@ -26,7 +26,7 @@ const TweetPoster = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
+            "Accept": "application/json"
           }
         });
         let updatedFeed = await dataWithPost.json();

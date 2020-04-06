@@ -8,7 +8,7 @@ import { FeedContext } from "./FeedContext";
 
 const HomeFeed = () => {
   const { homeFeedState } = React.useContext(FeedContext);
-  console.log(homeFeedState, "IM IN HOMEFEED");
+  // console.log(homeFeedState, "IM IN HOMEFEED");
 
   return (
     <React.Fragment>
@@ -30,6 +30,7 @@ const HomeFeed = () => {
             })}
         </StyledFeed>
       </Layout>
+      
     </React.Fragment>
   );
 };
@@ -38,8 +39,8 @@ export default HomeFeed;
 
 const StyledFeed = styled.div`
   width: 60vw;
-  border-right: 1px solid ${COLORS.borders};
- 
+  border: 1px solid ${COLORS.borders};
+  margin-left: 300px;
 `;
 
 const StyledSpan = styled.span``;

@@ -4,19 +4,13 @@ import { COLORS } from "../constants";
 import styled from "styled-components";
 import { HomeIcon, BookmarkIcon, BellIcon, UserIcon } from "./headerIcons";
 import { ReactComponent as Logo } from "../Assets/logo.svg";
-
 import { CurrentUserContext } from "./CurrentUserContext";
 
-//for pot modal
-
-///on click trigger modal. which triggers post 
-
-
-
+import FormDialog from "./FormDialog";
 
 const Header = () => {
   const { currentUserData } = React.useContext(CurrentUserContext);
-  console.log(currentUserData, 'CURRENTUSER IN HEADER****')
+  
   return (
     <>
       {currentUserData != null && (
@@ -32,9 +26,7 @@ const Header = () => {
                 </NavBarLink>
               </StyledLi>
               <StyledLi>
-                <NavBarLink
-                  to={`/profile/${currentUserData.profile.handle}`}
-                >
+                <NavBarLink to={`/profile/${currentUserData.profile.handle}`}>
                   <UserIcon /> Profile
                 </NavBarLink>
               </StyledLi>
@@ -49,6 +41,9 @@ const Header = () => {
                 </NavBarLink>
               </StyledLi>
             </ListItems>
+            <StyledLi>
+              <FormDialog></FormDialog>
+            </StyledLi>
           </nav>
         </Styledheader>
       )}
@@ -70,7 +65,7 @@ const NavBarLink = styled(NavLink)`
 
 const Styledheader = styled.header`
   min-width: 20%;
-  border-right: 1px solid grey;
+  position: fixed;
   /* background:red; */
 `;
 const ListItems = styled.ul`
@@ -81,8 +76,9 @@ const ListItems = styled.ul`
 
 const StyledLi = styled.li`
   margin: 25px 0 0 35%;
+  list-style-type: none;
 
   &:hover {
-    background: #ece6ff;
+    /* background: #ece6ff; */
   }
 `;

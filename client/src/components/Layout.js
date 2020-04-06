@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "./Header"
-import styled from "styled-components"
-import Footer from "./Footer"
+import styled from "styled-components";
+import Footer from "./Footer";
+import { FeedContext } from "./FeedContext";
 
 const Layout = props => {
+
+  const { homeFeedState } = useContext(FeedContext);
+
   return (
     <StyledContainer>
       <Header />
 
       <div> {props.children}</div>
-      <Footer />
+      {homeFeedState.retrievedData && (<Footer /> )}
+     
     </StyledContainer>
    
   );

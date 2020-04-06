@@ -145,7 +145,7 @@ export default FriendProfile;
 
 const Profile = styled.div`
   height: 2000px;
-  margin-left: 20px;
+  margin-left: 300px;
 `;
 
 const BannerImg = styled.img`

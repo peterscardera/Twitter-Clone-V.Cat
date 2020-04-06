@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Liked from "./Liked";
 import Retweet from "./Retweet";
+import { FiShare} from "react-icons/fi";
+import { FiMessageCircle } from "react-icons/fi";
 
 const Tweets = ({ orderId, tweetState }) => {
   const history = useHistory();
@@ -33,9 +35,9 @@ const Tweets = ({ orderId, tweetState }) => {
 
         <SecondColumn>
           <FirstContainer>
-            <StyledHandle onClick={handleLink}>
-              {tweetState[orderId].author.displayName} 
-            </StyledHandle>
+            <StyledDisplay onClick={handleLink}>
+              {tweetState[orderId].author.displayName}
+            </StyledDisplay>
             <div> @{tweetState[orderId].author.handle} </div>
             <div> {tweetState[orderId].timestamp} </div>
           </FirstContainer>
@@ -45,8 +47,12 @@ const Tweets = ({ orderId, tweetState }) => {
               <StyledImgPost src={tweetState[orderId].media[0].url} />
             )}
           </div>
-          <Liked tweetLikedStatus={tweetState[orderId]}></Liked>
-          <Retweet tweetLikedStatus={tweetState[orderId]}> </Retweet>
+          <Actions>
+            <Liked tweetLikedStatus={tweetState[orderId]}></Liked>
+            <Retweet tweetLikedStatus={tweetState[orderId]}> </Retweet>
+            <FiShare size={27}/>
+            <FiMessageCircle size={27}/>
+          </Actions>
         </SecondColumn>
       </MainContainer>
     </React.Fragment>
@@ -60,7 +66,7 @@ const MainContainer = styled.div`
   grid-template-rows: 1fr;
   grid-row-gap: 60px;
   border-top: 1px solid ${COLORS.borders};
-
+  /* margin-top: 20px; */
   /* border: 2px solid black; */
 
   &:hover {
@@ -72,25 +78,32 @@ const StyledAvatar = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  margin: 10px 0 0 5px ;
 `;
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 400px;
+  width: 350px;
   height: 300px;
 `;
 const FirstContainer = styled.div`
   display: flex;
+  margin: 20px 0px
 `;
 
 const SecondColumn = styled.div``;
 
+const StyledDisplay = styled.div`
+  font-weight: bold;
 
-const StyledHandle = styled.div`
-font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
-&:hover {
-  text-decoration: underline
-}
-
-
+const Actions = styled.div`
+margin-top: 10px;
+width: 60%;
+display:flex;
+/* background: red; */
+justify-content: space-between;
 `
