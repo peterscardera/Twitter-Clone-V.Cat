@@ -56,14 +56,14 @@ const TweetDetails = () => {
                   <div> @{individualTweet.author.handle} </div>
                 </FirstRow>
                 <SecondRow>
-                  <div> {individualTweet.status} </div>
-                  <div> {individualTweet.timestamp} </div>
+                  <div> {individualTweet.status} on {individualTweet.timestamp} </div>
+                
                   {individualTweet.media.length > 0 && (
                     <StyledImgPost src={individualTweet.media[0].url} />
                   )}
                   <Actions>
-                    {/* <Liked tweetLikedStatus={individualTweet.id}></Liked>
-                  <Retweet tweetLikedStatus={individualTweet.id}> </Retweet> */}
+                    <Liked tweetLikedStatus={individualTweet}></Liked>
+                  <Retweet tweetLikedStatus={individualTweet}> </Retweet>
                     <FiShare size={27} />
                     <FiMessageCircle size={27} />
                   </Actions>
@@ -104,8 +104,8 @@ const StyledAvatar = styled.img`
 
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 650px;
-  height: 500px;
+  width: 450px;
+  height: 400px;
 `;
 
 const StyledDisplay = styled.div`
@@ -116,7 +116,6 @@ const Actions = styled.div`
   margin-top: 10px;
   width: 60%;
   display: flex;
-  /* background: red; */
   justify-content: space-between;
 `;
 
@@ -130,5 +129,5 @@ const SecondRow = styled.div`
 margin-top:20px;
 display:flex;
 flex-direction:column;
-align-content: space-between;
+align-items: center;
 `

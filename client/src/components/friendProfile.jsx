@@ -66,12 +66,13 @@ const FriendProfile = () => {
   return (
     <>
       <Layout>
+        <Profile>
         {clickedProfileState != null && (
           <>
-            <Profile>
+            
               <div>
                 <BannerImg src={clickedProfileState.profile.bannerSrc} />
-                <AvatarImg src={clickedProfileState.profile.avatarSrc} />
+                {/* <AvatarImg src={clickedProfileState.profile.avatarSrc} /> */}
               </div>
               <MiddleContainer>
                 <DisplayName>
@@ -104,7 +105,6 @@ const FriendProfile = () => {
                 <StyledButton> Media </StyledButton>
                 <StyledButton> Likes </StyledButton>
               </ActionBar>
-            </Profile>
           </>
         )}
 
@@ -125,17 +125,18 @@ const FriendProfile = () => {
                   <div>
                     {tweetFeed.tweetsById[item].media.length > 0 && (
                       <StyledImgPost
-                        src={tweetFeed.tweetsById[item].media[0].url}
+                      src={tweetFeed.tweetsById[item].media[0].url}
                       />
-                    )}
+                      )}
                   </div>
                 </MainContainer>
               </React.Fragment>
             );
           })
-
-        //<div> {tweetFeed.tweetIds[0]} </div>
+          
+          //<div> {tweetFeed.tweetIds[0]} </div>
         }
+        </Profile>
       </Layout>
     </>
   );
@@ -154,14 +155,9 @@ const BannerImg = styled.img`
 `;
 const AvatarImg = styled.img`
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  border: 2px white solid;
-  position: absolute;
-  top: 200px;
-  margin-left: 20px;
-
-  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 10px 0 0 5px ;
 `;
 const DisplayName = styled.div`
   font-weight: bold;
@@ -212,7 +208,19 @@ const StyledImgPost = styled.img`
   height: 300px;
 `;
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 1fr;
+  grid-row-gap: 60px;
+  border-top: 1px solid ${COLORS.borders};
+  /* margin-top: 20px; */
+  /* border: 2px solid black; */
+
+  &:hover {
+    background: ${COLORS.borders};
+    cursor: pointer;
+`;
 
 const FirstRow= styled.div``
 
