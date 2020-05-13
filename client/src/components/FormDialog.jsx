@@ -1,4 +1,5 @@
 import React from "react";
+import { COLORS } from "../constants";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -58,6 +59,7 @@ export default function FormDialog() {
         QUICK MEOW
       </Button>
       <Dialog
+        style={{background:"RGBA(37,51,65,.8)"}}
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -65,6 +67,7 @@ export default function FormDialog() {
         <DialogTitle id="form-dialog-title">Quick Meow</DialogTitle>
         <DialogContent>
           <TextField
+          
             required
             autoFocus
             margin="dense"

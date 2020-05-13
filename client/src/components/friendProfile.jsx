@@ -4,11 +4,11 @@ import { COLORS } from "../constants";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import isoConverter from "./Iso-date-converter";
 
 const FriendProfile = () => {
   const [clickedProfileState, setClickedProfileState] = useState(null);
   const [tweetFeed, setTweetFeed] = useState("");
-
 
   let { profileId } = useParams();
 
@@ -67,9 +67,8 @@ const FriendProfile = () => {
     <>
       <Layout>
         <Profile>
-        {clickedProfileState != null && (
-          <>
-            
+          {clickedProfileState != null && (
+            <>
               <div>
                 <BannerImg src={clickedProfileState.profile.bannerSrc} />
                 {/* <AvatarImg src={clickedProfileState.profile.avatarSrc} /> */}
@@ -105,37 +104,46 @@ const FriendProfile = () => {
                 <StyledButton> Media </StyledButton>
                 <StyledButton> Likes </StyledButton>
               </ActionBar>
-          </>
-        )}
+            </>
+          )}
 
-        {tweetFeed != "" &&
-          tweetFeed.tweetIds.map((item, i) => {
-            return (
-              <React.Fragment>
-                <MainContainer>
-                  <FirstRow>
-                    {/* <AvatarImg
-                      src={tweetFeed.tweetsById[item].author.avatarSrc}
-                    /> */}
-                    <div>{tweetFeed.tweetsById[item].author.displayName}</div>
-                    <div>@{tweetFeed.tweetsById[item].author.handle}</div>
-                    <div>{tweetFeed.tweetsById[item].timestamp}</div>
-                  </FirstRow>
-                  <div>{tweetFeed.tweetsById[item].status}</div>
-                  <div>
-                    {tweetFeed.tweetsById[item].media.length > 0 && (
-                      <StyledImgPost
-                      src={tweetFeed.tweetsById[item].media[0].url}
+          {
+            tweetFeed != "" &&
+              tweetFeed.tweetIds.map((item, i) => {
+                return (
+                  <React.Fragment>
+                    <MainContainer>
+                      <StyledAvatar
+                        src={tweetFeed.tweetsById[item].author.avatarSrc}
                       />
-                      )}
-                  </div>
-                </MainContainer>
-              </React.Fragment>
-            );
-          })
-          
-          //<div> {tweetFeed.tweetIds[0]} </div>
-        }
+                      <SecondColumn>
+                        <FirstContainer>
+                          <StyledDisplay>
+                            {tweetFeed.tweetsById[item].author.displayName}
+                          </StyledDisplay>
+                          <StyledHandler>
+                            @{tweetFeed.tweetsById[item].author.handle}
+                          </StyledHandler>
+                          <StyledTime>
+                            {isoConverter(tweetFeed.tweetsById[item].timestamp)}
+                          </StyledTime>
+                        </FirstContainer>
+                        <StyledStatus>{tweetFeed.tweetsById[item].status}</StyledStatus>
+                        <div>
+                          {tweetFeed.tweetsById[item].media.length > 0 && (
+                            <StyledImgPost
+                              src={tweetFeed.tweetsById[item].media[0].url}
+                            />
+                          )}
+                        </div>
+                      </SecondColumn>
+                    </MainContainer>
+                  </React.Fragment>
+                );
+              })
+
+            //<div> {tweetFeed.tweetIds[0]} </div>
+          }
         </Profile>
       </Layout>
     </>
@@ -144,9 +152,64 @@ const FriendProfile = () => {
 
 export default FriendProfile;
 
+const MainContainer = styled.div`
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 1fr;
+  grid-row-gap: 60px;
+  border: 1px solid ${COLORS.borders};
+  /* margin-top: 20px; */
+  /* border: 2px solid black; */
+
+  &:hover {
+    background: ${COLORS.borders};
+    cursor: pointer;
+  }
+`;
+const SecondColumn = styled.div``;
+const StyledAvatar = styled.img`
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 10px 0 0 5px;
+`;
+
+const StyledStatus = styled.div`
+font-size: .9rem;
+margin: 10px 0px;
+`
+
+const FirstContainer = styled.div`
+  display: flex;
+  margin: 20px 0px;
+`;
+
+const StyledDisplay = styled.div`
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+const StyledHandler = styled.div`
+  color: gray;
+  opacity: 0.9;
+  font-weight: 600;
+  font-size: 0.7rem;
+  margin-left: 10px;
+`;
+
+const StyledTime = styled.div`
+  font-size: 0.7rem;
+  color: whitesmoke;
+  align-self: flex-end;
+  justify-content: flex-end;
+`;
+
 const Profile = styled.div`
   height: 2000px;
   margin-left: 300px;
+  border: 1px solid ${COLORS.borders};
 `;
 
 const BannerImg = styled.img`
@@ -157,7 +220,7 @@ const AvatarImg = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin: 10px 0 0 5px ;
+  margin: 10px 0 0 5px;
 `;
 const DisplayName = styled.div`
   font-weight: bold;
@@ -188,7 +251,7 @@ const ActionBar = styled.div`
   height: 60px;
   justify-content: space-between;
 
-  border-bottom: 0.2px solid lightgrey;
+  border-bottom: 2px solid white;
 `;
 const StyledButton = styled.button`
   color: ${COLORS.primary};
@@ -204,23 +267,8 @@ const StyledButton = styled.button`
 
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 400;
-  height: 300px;
+  width: 280px;
+  height: 200px;
 `;
 
-const MainContainer = styled.div`
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  grid-template-rows: 1fr;
-  grid-row-gap: 60px;
-  border-top: 1px solid ${COLORS.borders};
-  /* margin-top: 20px; */
-  /* border: 2px solid black; */
-
-  &:hover {
-    background: ${COLORS.borders};
-    cursor: pointer;
-`;
-
-const FirstRow= styled.div``
-
+const FirstRow = styled.div``;

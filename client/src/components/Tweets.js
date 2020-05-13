@@ -6,6 +6,7 @@ import Liked from "./Liked";
 import Retweet from "./Retweet";
 import { FiShare} from "react-icons/fi";
 import { FiMessageCircle } from "react-icons/fi";
+import isoConverter from "./Iso-date-converter"
 
 const Tweets = ({ orderId, tweetState }) => {
   const history = useHistory();
@@ -38,20 +39,20 @@ const Tweets = ({ orderId, tweetState }) => {
             <StyledDisplay onClick={handleLink}>
               {tweetState[orderId].author.displayName}
             </StyledDisplay>
-            <div> @{tweetState[orderId].author.handle} </div>
-            <div> {tweetState[orderId].timestamp} </div>
+            <StyledHandler> @{tweetState[orderId].author.handle} </StyledHandler>
           </FirstContainer>
-          <div>{tweetState[orderId].status}</div>
+          <StyledStatus>{tweetState[orderId].status}</StyledStatus>
           <div>
             {tweetState[orderId].media.length > 0 && (
               <StyledImgPost src={tweetState[orderId].media[0].url} />
-            )}
+              )}
           </div>
           <Actions>
             <Liked tweetLikedStatus={tweetState[orderId]}></Liked>
             <Retweet tweetLikedStatus={tweetState[orderId]}> </Retweet>
-            <FiShare size={27}/>
-            <FiMessageCircle size={27}/>
+            <FiShare size={20}/>
+            <FiMessageCircle size={20}/>
+              <StyledTime> {isoConverter(tweetState[orderId].timestamp)} </StyledTime>
           </Actions>
         </SecondColumn>
       </MainContainer>
@@ -80,10 +81,30 @@ const StyledAvatar = styled.img`
   height: 50px;
   margin: 10px 0 0 5px ;
 `;
+
+const StyledStatus = styled.div`
+font-size: .9rem;
+margin: 10px 0px;
+`
+const StyledTime = styled.div`
+font-size:.7rem;
+color:whitesmoke;
+align-self: flex-end;
+justify-content: flex-end;
+`
+
+const StyledHandler = styled.div`
+color: gray;
+opacity: .9;
+font-weight: 600;
+font-size: .7rem;
+margin-left: 10px;
+`
+
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 350px;
-  height: 300px;
+  width: 280px;
+  height: 200px;
 `;
 const FirstContainer = styled.div`
   display: flex;
@@ -102,7 +123,7 @@ const StyledDisplay = styled.div`
 
 const Actions = styled.div`
 margin-top: 10px;
-width: 60%;
+width: 95%;
 display:flex;
 /* background: red; */
 justify-content: space-between;

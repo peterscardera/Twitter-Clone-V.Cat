@@ -10,7 +10,7 @@ import FormDialog from "./FormDialog";
 
 const Header = () => {
   const { currentUserData } = React.useContext(CurrentUserContext);
-  
+
   return (
     <>
       {currentUserData != null && (
@@ -21,17 +21,23 @@ const Header = () => {
                 <Logo />
               </StyledLi>
               <StyledLi>
-                <NavBarLink to="/">
+                <NavBarLink activeStyle={{ color: `${COLORS.primary}` }} exact={true} to="/">
                   <HomeIcon /> Home
                 </NavBarLink>
               </StyledLi>
               <StyledLi>
-                <NavBarLink to={`/profile/${currentUserData.profile.handle}`}>
+                <NavBarLink
+                  activeStyle={{ color: `${COLORS.primary}` }}
+                  to={`/profile/${currentUserData.profile.handle}`}
+                >
                   <UserIcon /> Profile
                 </NavBarLink>
               </StyledLi>
               <StyledLi>
-                <NavBarLink to="/notifications">
+                <NavBarLink
+                  activeStyle={{ color: `${COLORS.primary}` }}
+                  to="/notifications"
+                >
                   <BellIcon /> Notifications
                 </NavBarLink>
               </StyledLi>
@@ -57,10 +63,8 @@ const NavBarLink = styled(NavLink)`
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  color: black;
-  &.active {
-    color: ${COLORS.primary};
-  }
+  color: white;
+
 `;
 
 const Styledheader = styled.header`

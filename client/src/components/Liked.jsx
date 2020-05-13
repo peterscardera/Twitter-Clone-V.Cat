@@ -46,10 +46,10 @@ const Liked = ({ tweetLikedStatus }) => {
     <React.Fragment>
       {tweetLikedStatus.isLiked ? (
         <div onClick={clickHandler}>
-          <Heart width={30} isToggled={true} />
+          <Heart width={22} isToggled={true} />
         </div>
       ) : (
-        <div onClick={clickHandler}> <Heart width={30}/>  </div>
+        <div onClick={clickHandler}> <Heart width={20}/>  </div>
          
       )}
       {/* <FaRegHeart></FaRegHeart> */}

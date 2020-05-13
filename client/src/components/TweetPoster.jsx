@@ -47,7 +47,7 @@ const TweetPoster = () => {
   return (
     <React.Fragment>
       <StyledDiv>Home</StyledDiv>
-      <form onSubmit={submitHandler}>
+      <StyledForm onSubmit={submitHandler}>
         <label htmlFor="tweet"></label>
         {currentUserData != null && (
           <StyledAvatar src={currentUserData.profile.avatarSrc} />
@@ -64,10 +64,10 @@ const TweetPoster = () => {
           required
         />
         <StyledPost>
-          <div> {280 - state.length}</div>
+          <StyledLength> {280 - state.length}</StyledLength>
           <StyledButton type="submit"> Meow </StyledButton>
         </StyledPost>
-      </form>
+      </StyledForm>
     </React.Fragment>
   );
 };
@@ -77,43 +77,56 @@ export default TweetPoster;
 const StyledDiv = styled.div`
   border-bottom: 1px solid ${COLORS.borders};
   padding: 10px 0 10px 20px;
-  color: black;
+  color: whitesmoke;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 `;
+const  StyledForm = styled.div`
+display:flex;
+height:45px;
+`
+const StyledLength = styled.div`
+font-size: .7rem;
+`
 const StyledTextarea = styled.textarea`
-  padding: 30px 0 60px 0;
-  width: 55vw;
-  height: 10vh;
-  font-size: 1.7rem;
+  margin-left: 45px;
+  margin-top:20px;
+
+  width: 45vw;
+  height: 30px;
+  font-size: .7rem;
   border: none;
   outline: none;
   background: none;
 
   ::placeholder {
-    padding-top: 10px;
-    padding-left: 60px;
-    font-size: 1.7rem;
+    /* padding-top: 10px;
+    padding-left: 60px; */
+    font-size: 1rem;
     opacity: 0.3;
   }
 `;
 const StyledButton = styled.button`
-  width: 80px;
-  height: 35px;
+
+cursor:pointer;
+  width: 50px;
+  height: 22px;
   border-radius: 25px;
-  font-size: 1.2rem;
+  font-size: .8rem;
   background: ${COLORS.primary};
-  opacity: 0.5;
+  opacity: 0.7;
   color: white;
 `;
 
 const StyledPost = styled.div`
+  margin:10px 10px 0px 0px;
   display: flex;
   justify-content: flex-end;
 `;
 
 const StyledAvatar = styled.img`
-  height: 60px;
-  width: 60px;
+  margin: 10px 0px 0px 10px;
+  height: 30px;
+  width: 34px;
   border-radius: 50%;
 `;

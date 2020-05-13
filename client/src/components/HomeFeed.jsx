@@ -38,7 +38,7 @@ const HomeFeed = () => {
 export default HomeFeed;
 
 const StyledFeed = styled.div`
-  width: 60vw;
+  width: 45vw;
   border: 1px solid ${COLORS.borders};
   margin-left: 300px;
 `;

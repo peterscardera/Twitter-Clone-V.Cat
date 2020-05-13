@@ -46,11 +46,11 @@ const Retweet = ({ tweetLikedStatus }) => {
     <React.Fragment>
       {tweetLikedStatus.isRetweeted ? (
         <div onClick={clickHandler}>
-          <TweetActionIcon kind="retweet" size={30} color={"green"} />
+          <TweetActionIcon kind="retweet" size={20} color={"green"} />
         </div>
       ) : (
         <div onClick={clickHandler} >
-          <TweetActionIcon kind="retweet" size={30} color={"black"} />
+          <TweetActionIcon kind="retweet" size={20} color={"white"} />
         </div>
       )}
     </React.Fragment>

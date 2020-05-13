@@ -7,6 +7,7 @@ import Liked from "./Liked";
 import Retweet from "./Retweet";
 import { FiShare } from "react-icons/fi";
 import { FiMessageCircle } from "react-icons/fi";
+import isoConverter from "./Iso-date-converter"
 
 const TweetDetails = () => {
   const location = useLocation();
@@ -53,10 +54,10 @@ const TweetDetails = () => {
                   <StyledDisplay>
                     {individualTweet.author.displayName}
                   </StyledDisplay>
-                  <div> @{individualTweet.author.handle} </div>
+                  <StyledHandler> @{individualTweet.author.handle} </StyledHandler>
                 </FirstRow>
                 <SecondRow>
-                  <div> {individualTweet.status} on {individualTweet.timestamp} </div>
+                  <div> {individualTweet.status} on {isoConverter(individualTweet.timestamp)} </div>
                 
                   {individualTweet.media.length > 0 && (
                     <StyledImgPost src={individualTweet.media[0].url} />
@@ -104,9 +105,16 @@ const StyledAvatar = styled.img`
 
 const StyledImgPost = styled.img`
   border-radius: 15px;
-  width: 450px;
-  height: 400px;
+  width: 380px;
+  height: 250px;
 `;
+
+const StyledHandler = styled.div`
+color: gray;
+opacity: .8;
+font-weight: 600;
+font-size: .7rem;
+`
 
 const StyledDisplay = styled.div`
   font-weight: bold;

@@ -12,11 +12,13 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
-    background: RGBA(25,183,234,0.03);
+    background: RGBA(21,31,43,.8);
+    color: white;
 
   }
   textarea {
     resize:none;
+    color:white;
   }
 
 
