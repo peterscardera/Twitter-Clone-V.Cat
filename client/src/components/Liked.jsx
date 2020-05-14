@@ -3,6 +3,7 @@ import { FeedContext } from "./FeedContext";
 import Heart from "./Heart";
 
 const Liked = ({ tweetLikedStatus }) => {
+  console.log(tweetLikedStatus, "HIT FROM FRIENDPROFILE")
   const { likerHandler } = React.useContext(FeedContext);
   const clickHandler = event => {
     event.preventDefault();

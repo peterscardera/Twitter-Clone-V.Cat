@@ -59,6 +59,9 @@ export default Footer;
 
 const StyledSearchContainer = styled.div`
   margin: 0 2%;
+  @media (max-width:900px) {
+    display:none;
+  }
 `;
 
 const StyledInput = styled.input`

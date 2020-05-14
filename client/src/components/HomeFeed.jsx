@@ -38,9 +38,18 @@ const HomeFeed = () => {
 export default HomeFeed;
 
 const StyledFeed = styled.div`
-  width: 45vw;
+  max-width: 50vw;
   border: 1px solid ${COLORS.borders};
-  margin-left: 300px;
+  margin-left: 400px;
+
+  @media (max-width: 1420px) {
+    margin-left: 280px;
+  }
+
+  @media (max-width: 1155px) {
+    margin-left: 200px;
+ min-width:350px;
+  }
 `;
 
 const StyledSpan = styled.span``;

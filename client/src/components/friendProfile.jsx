@@ -4,10 +4,20 @@ import { COLORS } from "../constants";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FeedContext } from "./FeedContext";
 import isoConverter from "./Iso-date-converter";
 
+import Liked from "./Liked";
+import Retweet from "./Retweet";
+import { FiShare } from "react-icons/fi";
+import { FiMessageCircle } from "react-icons/fi";
+
 const FriendProfile = () => {
+  const { homeFeedState } = React.useContext(FeedContext);
+  console.log(homeFeedState, "HOMEFEESTATE");
+
   const [clickedProfileState, setClickedProfileState] = useState(null);
+  console.log(clickedProfileState, "PROFILE");
   const [tweetFeed, setTweetFeed] = useState("");
 
   let { profileId } = useParams();
@@ -78,24 +88,26 @@ const FriendProfile = () => {
                   {" "}
                   {clickedProfileState.profile.displayName}
                 </DisplayName>
-                <HandleName> {clickedProfileState.profile.handle}</HandleName>
+                <HandleName> @{clickedProfileState.profile.handle}</HandleName>
                 <BioContainer>
-                  <div> {clickedProfileState.profile.bio}</div>
+                  <StyledBio> {clickedProfileState.profile.bio}</StyledBio>
                   <div>
-                    <div> {clickedProfileState.profile.location}</div>
-                    <div> {clickedProfileState.profile.joined}</div>
+                    <StyledJoined>
+                      {" "}
+                      Joined:{isoConverter(clickedProfileState.profile.joined)}
+                    </StyledJoined>
                   </div>
                   <Follows>
-                    <Link
+                    <StyledLink
                       to={`/${clickedProfileState.profile.handle}/followers`}
                     >
                       Followers {clickedProfileState.profile.numFollowers}
-                    </Link>
-                    <Link
+                    </StyledLink>
+                    <StyledLink
                       to={`/${clickedProfileState.profile.handle}/following`}
                     >
                       Following {clickedProfileState.profile.numFollowing}
-                    </Link>
+                    </StyledLink>
                   </Follows>
                 </BioContainer>
               </MiddleContainer>
@@ -110,6 +122,7 @@ const FriendProfile = () => {
           {
             tweetFeed != "" &&
               tweetFeed.tweetIds.map((item, i) => {
+                console.log(item);
                 return (
                   <React.Fragment>
                     <MainContainer>
@@ -124,11 +137,10 @@ const FriendProfile = () => {
                           <StyledHandler>
                             @{tweetFeed.tweetsById[item].author.handle}
                           </StyledHandler>
-                          <StyledTime>
-                            {isoConverter(tweetFeed.tweetsById[item].timestamp)}
-                          </StyledTime>
                         </FirstContainer>
-                        <StyledStatus>{tweetFeed.tweetsById[item].status}</StyledStatus>
+                        <StyledStatus>
+                          {tweetFeed.tweetsById[item].status}
+                        </StyledStatus>
                         <div>
                           {tweetFeed.tweetsById[item].media.length > 0 && (
                             <StyledImgPost
@@ -136,6 +148,20 @@ const FriendProfile = () => {
                             />
                           )}
                         </div>
+                        <Actions>
+                          <Liked
+                            tweetLikedStatus={homeFeedState.tweetsByIds}
+                          ></Liked>
+                          <Retweet tweetLikedStatus={homeFeedState.tweetsByIds}>
+                            {" "}
+                          </Retweet>
+                          <FiShare size={20} />
+                          <FiMessageCircle size={20} />
+                          <StyledTime>
+                            {" "}
+                            {isoConverter(tweetFeed.tweetsById[item].timestamp)}
+                          </StyledTime>
+                        </Actions>
                       </SecondColumn>
                     </MainContainer>
                   </React.Fragment>
@@ -175,9 +201,9 @@ const StyledAvatar = styled.img`
 `;
 
 const StyledStatus = styled.div`
-font-size: .9rem;
-margin: 10px 0px;
-`
+  font-size: 0.9rem;
+  margin: 10px 0px;
+`;
 
 const FirstContainer = styled.div`
   display: flex;
@@ -207,9 +233,15 @@ const StyledTime = styled.div`
 `;
 
 const Profile = styled.div`
-  height: 2000px;
-  margin-left: 300px;
+  height: auto;
+  margin-left: 35%;
   border: 1px solid ${COLORS.borders};
+
+  
+
+  @media (max-width: 1155px) {
+    margin-left: 22%;
+  }
 `;
 
 const BannerImg = styled.img`
@@ -243,14 +275,17 @@ const BioContainer = styled.div`
 `;
 
 const Follows = styled.div`
+  font-size: 0.7rem;
   display: flex;
+  width: 150px;
+  justify-content: space-between;
 `;
 
 const ActionBar = styled.div`
   display: flex;
   height: 60px;
   justify-content: space-between;
-
+  border-top: 2px solid white;
   border-bottom: 2px solid white;
 `;
 const StyledButton = styled.button`
@@ -258,11 +293,12 @@ const StyledButton = styled.button`
   outline: none;
   width: 100%;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 800;
   display: inline-block;
   border: none;
   text-decoration: none;
   cursor: pointer;
+  background: inherit;
 `;
 
 const StyledImgPost = styled.img`
@@ -271,4 +307,30 @@ const StyledImgPost = styled.img`
   height: 200px;
 `;
 
-const FirstRow = styled.div``;
+const Actions = styled.div`
+  margin-top: 10px;
+  width: 95%;
+  display: flex;
+  /* background: red; */
+  justify-content: space-between;
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  active {
+    text-decoration: none;
+    color: white;
+  }
+`;
+
+const StyledBio = styled.div`
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledJoined = styled.div`
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+`;

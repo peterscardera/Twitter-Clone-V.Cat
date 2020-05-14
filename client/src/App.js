@@ -1,15 +1,16 @@
 import React from "react";
+import styled from "styled-components"
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
 import TweetDetails from "./components/TweetDetails";
 import FriendProfile from "./components/friendProfile";
-import MyProfile from "./components/MyProfile";
 import Followers from "./components/Followers";
 import Following from "./components/Following";
 import GlobalStyles from "./components/GlobalStyles";
-import { ReactComponent as Logo } from "./Assets/logo.svg";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { ReactComponent as Logo } from "./Assets/logo.svg";
+import Loading from "./components/Loading"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
@@ -18,7 +19,7 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <div>
+      <Wrapper>
         {status ? (
           <Router>
             <GlobalStyles />
@@ -51,11 +52,18 @@ const App = () => {
             </Switch>
           </Router>
         ) : (
-          <Logo />
+          <Loading />
         )}
-      </div>
+      </Wrapper>
     </React.Fragment>
   );
 };
 
 export default App;
+
+
+const Wrapper = styled.div`
+display:flex;
+justify-content:center;
+
+`

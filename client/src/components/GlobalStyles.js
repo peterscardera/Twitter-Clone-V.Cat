@@ -12,7 +12,7 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
-    background: RGBA(21,31,43,.8);
+    background-color: #1E2833;
     color: white;
 
   }
@@ -68,8 +68,7 @@ export default createGlobalStyle`
 
     font-size: 1rem;
     font-family: 'Merriweather', serif;
-    /* background: #222;
-    color: white; */
+  
     
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Layout from "./Layout";
+import Header from "./Header";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import FollowerDetails from "./FollowerDetails";
@@ -18,8 +18,8 @@ const Following = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
-          }
+            Accept: "application/json",
+          },
         });
         if (data.status === 200) {
           let initialFollowingData = await data.json();
@@ -38,9 +38,12 @@ const Following = () => {
 
   return (
     <React.Fragment>
-      <Layout>
+      <Wrapper>
+        <Header />
         {followingData != null && (
           <>
+            <StyledCurrentUser>{handlerFromPath}</StyledCurrentUser>
+            <StyledTitle>Following</StyledTitle>
             {followingData.map((eachFollowing, i) => {
               return (
                 <>
@@ -53,15 +56,27 @@ const Following = () => {
             })}
           </>
         )}
-      </Layout>
+      </Wrapper>
     </React.Fragment>
   );
 };
 
 export default Following;
 
-const StyledAvatar = styled.img`
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+const Wrapper = styled.div`
+  height: 100vh;
+`;
+
+const StyledCurrentUser = styled.div`
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.3rem;
+`;
+const StyledTitle = styled.div`
+  display: flex;
+  justify-content: center;
 `;

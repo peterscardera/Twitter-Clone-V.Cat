@@ -43,7 +43,8 @@ const Header = () => {
               </StyledLi>
               <StyledLi>
                 <NavBarLink to="/Bookmarks">
-                  <BookmarkIcon /> Bookmarks
+                  <BookmarkIcon /> 
+                  Bookmarks
                 </NavBarLink>
               </StyledLi>
             </ListItems>
@@ -64,18 +65,45 @@ const NavBarLink = styled(NavLink)`
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
+@media (max-width: 1420px){
+  font-size: .9rem;
+}
 
+@media (max-width: 1155px){
+  font-size: .6rem;
+}
+@media (max-width: 1000px){
+  font-size: 0rem;
+}
 `;
 
 const Styledheader = styled.header`
-  min-width: 20%;
+  min-width: 25%;
   position: fixed;
   /* background:red; */
+
+  @media (max-width: 1420px){
+    min-width: 20%;
+}
+
+@media (max-width: 1155px){
+  min-width: 10%;
+}
+@media (max-width: 1000px){
+  max-width:50px;
+}
 `;
 const ListItems = styled.ul`
   display: flex;
   flex-direction: column;
   height: 450px;
+  @media (max-width: 1155px) {
+    width:200px;
+  }
+
+  @media (max-width: 700px){
+  max-width:50px;
+}
 `;
 
 const StyledLi = styled.li`
@@ -85,4 +113,8 @@ const StyledLi = styled.li`
   &:hover {
     /* background: #ece6ff; */
   }
+  @media (max-width: 700px){
+  max-width:50px;
+}
+
 `;

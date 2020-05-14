@@ -8,6 +8,9 @@ import { FiShare} from "react-icons/fi";
 import { FiMessageCircle } from "react-icons/fi";
 import isoConverter from "./Iso-date-converter"
 
+
+//child of HomeFeed
+
 const Tweets = ({ orderId, tweetState }) => {
   const history = useHistory();
   //console.log(history)
@@ -62,6 +65,7 @@ const Tweets = ({ orderId, tweetState }) => {
 
 export default Tweets;
 const MainContainer = styled.div`
+min-width: 300px;
   display: grid;
   grid-template-columns: 60px 1fr;
   grid-template-rows: 1fr;

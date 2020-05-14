@@ -41,6 +41,7 @@ const TweetPoster = () => {
   };
 
   const submitHandler = e => {
+    console.log('clicked')
     e.preventDefault();
     postTweet();
   };
@@ -81,7 +82,7 @@ const StyledDiv = styled.div`
   font-weight: bold;
   font-size: 1.4rem;
 `;
-const  StyledForm = styled.div`
+const  StyledForm = styled.form`
 display:flex;
 height:45px;
 `
@@ -109,6 +110,7 @@ const StyledTextarea = styled.textarea`
 const StyledButton = styled.button`
 
 cursor:pointer;
+outline:none;
   width: 50px;
   height: 22px;
   border-radius: 25px;
