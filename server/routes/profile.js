@@ -4,7 +4,6 @@
 const lodash = require('lodash');
 const router = require('express').Router();
 
-console.log("HEEELLOO")
 const {
   CURRENT_USER_HANDLE,
   getUser,
