@@ -4,8 +4,7 @@
 const lodash = require('lodash');
 const router = require('express').Router();
 
-const data = require('../data');
-
+console.log("HEEELLOO")
 const {
   CURRENT_USER_HANDLE,
   getUser,
@@ -16,11 +15,12 @@ const {
 
 router.get('/api/me/profile', (req, res) => {
   const profile = getUserProfile(CURRENT_USER_HANDLE);
-
+ 
   return simulateProblems(res, { profile });
 });
 
 router.get('/api/:handle/profile', (req, res) => {
+
   let profile;
   try {
     profile = getUserProfile(req.params.handle);
@@ -29,7 +29,9 @@ router.get('/api/:handle/profile', (req, res) => {
       return res.status(400).json({ error: 'user-not-found' });
     }
   }
-
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', "*")
+ 
   return res.json({
     profile,
   });
