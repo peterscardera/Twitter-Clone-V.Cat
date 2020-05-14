@@ -28,6 +28,7 @@ console.log(matchedResults)
         <form>
           <label htmlFor="search"></label>
           <StyledInput
+          autocomplete="off"
             placeholder="Tweet Search"
             id="search"
             type="text"
@@ -40,11 +41,11 @@ console.log(matchedResults)
            return (
              <>
 
-           <div onClick={(e)=> {
+           <StyledResult onClick={(e)=> {
              e.preventDefault();
              e.stopPropagation();
              history.push(`/tweet/${item.id}`)
-           }} > {item.status} </div>
+           }} > {item.status} </StyledResult>
 
 
              </>
@@ -72,4 +73,9 @@ const StyledInput = styled.input`
   outline: none;
   background: ${COLORS.borders};
   padding-left: 30px;
+  color:white;
 `;
+
+const StyledResult = styled.div`
+cursor:pointer;
+`

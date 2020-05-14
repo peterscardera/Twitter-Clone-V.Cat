@@ -47,7 +47,7 @@ const StyledFeed = styled.div`
   }
 
   @media (max-width: 1155px) {
-    margin-left: 200px;
+    margin-left: 150px;
  min-width:350px;
   }
 `;

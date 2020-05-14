@@ -38,38 +38,60 @@ const Following = () => {
 
   return (
     <React.Fragment>
-      <Wrapper>
+      <StyledHContainer>
         <Header />
-        {followingData != null && (
-          <>
-            <StyledCurrentUser>{handlerFromPath}</StyledCurrentUser>
-            <StyledTitle>Following</StyledTitle>
-            {followingData.map((eachFollowing, i) => {
-              return (
-                <>
-                  <FollowerDetails
-                    aFriend={eachFollowing}
-                    key={i}
-                  ></FollowerDetails>
-                </>
-              );
-            })}
-          </>
-        )}
-      </Wrapper>
+        <Wrapper>
+          {followingData != null && (
+            <>
+              <div>
+                <StyledCurrentUser>{handlerFromPath}</StyledCurrentUser>
+                <StyledTitle>Following</StyledTitle>
+                {followingData.map((eachFollowing, i) => {
+                  return (
+                    <>
+                      <FollowerDetails
+                        aFriend={eachFollowing}
+                        key={i}
+                        ></FollowerDetails>
+                    </>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </Wrapper>
+          </StyledHContainer>
     </React.Fragment>
   );
 };
 
 export default Following;
 
+const StyledHContainer = styled.div`
+display:flex;
+justify-content: flex-start;
+width:100%;
+`
+
 const Wrapper = styled.div`
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-left: 400px;
+
+@media (max-width: 1420px) {
+  margin-left: 280px;
+}
+
+@media (max-width: 1155px) {
+  margin-left: 200px;
+
+}
+
 `;
 
 const StyledCurrentUser = styled.div`
   padding-top: 20px;
-
   display: flex;
   justify-content: center;
   color: white;

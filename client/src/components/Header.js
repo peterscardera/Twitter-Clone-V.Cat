@@ -21,7 +21,11 @@ const Header = () => {
                 <Logo />
               </StyledLi>
               <StyledLi>
-                <NavBarLink activeStyle={{ color: `${COLORS.primary}` }} exact={true} to="/">
+                <NavBarLink
+                  activeStyle={{ color: `${COLORS.primary}` }}
+                  exact={true}
+                  to="/"
+                >
                   <HomeIcon /> Home
                 </NavBarLink>
               </StyledLi>
@@ -34,18 +38,22 @@ const Header = () => {
                 </NavBarLink>
               </StyledLi>
               <StyledLi>
-                <NavBarLink
+                {/* <NavBarLink
                   activeStyle={{ color: `${COLORS.primary}` }}
                   to="/notifications"
-                >
+                > */}
+                <PagesThatDontExist>
                   <BellIcon /> Notifications
-                </NavBarLink>
+                </PagesThatDontExist>
+                {/* </NavBarLink> */}
               </StyledLi>
               <StyledLi>
-                <NavBarLink to="/Bookmarks">
-                  <BookmarkIcon /> 
+                {/* <NavBarLink to="/Bookmarks"> */}
+                <PagesThatDontExist>
+                  <BookmarkIcon />
                   Bookmarks
-                </NavBarLink>
+                </PagesThatDontExist>
+                {/* </NavBarLink> */}
               </StyledLi>
             </ListItems>
             <StyledLi>
@@ -60,50 +68,68 @@ const Header = () => {
 
 export default Header;
 
+const PagesThatDontExist = styled.div`
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  @media (max-width: 1420px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1155px) {
+    font-size: 0.6rem;
+  }
+  @media (max-width: 1000px) {
+    font-size: 0rem;
+  }
+`;
+
 const NavBarLink = styled(NavLink)`
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
-@media (max-width: 1420px){
-  font-size: .9rem;
-}
+  @media (max-width: 1420px) {
+    font-size: 0.9rem;
+  }
 
-@media (max-width: 1155px){
-  font-size: .6rem;
-}
-@media (max-width: 1000px){
-  font-size: 0rem;
-}
+  @media (max-width: 1155px) {
+    font-size: 0.6rem;
+  }
+  @media (max-width: 1000px) {
+    font-size: 0rem;
+  }
 `;
 
 const Styledheader = styled.header`
+left:0px;
   min-width: 25%;
   position: fixed;
   /* background:red; */
 
-  @media (max-width: 1420px){
+  @media (max-width: 1420px) {
     min-width: 20%;
-}
+  }
 
-@media (max-width: 1155px){
-  min-width: 10%;
-}
-@media (max-width: 1000px){
-  max-width:50px;
-}
+  @media (max-width: 1155px) {
+    min-width: 10%;
+  }
+  @media (max-width: 1000px) {
+    max-width: 50px;
+  }
 `;
 const ListItems = styled.ul`
   display: flex;
   flex-direction: column;
   height: 450px;
   @media (max-width: 1155px) {
-    width:200px;
+    width: 200px;
   }
 
-  @media (max-width: 700px){
-  max-width:50px;
-}
+  @media (max-width: 700px) {
+    max-width: 50px;
+  }
 `;
 
 const StyledLi = styled.li`
@@ -113,8 +139,7 @@ const StyledLi = styled.li`
   &:hover {
     /* background: #ece6ff; */
   }
-  @media (max-width: 700px){
-  max-width:50px;
-}
-
+  @media (max-width: 700px) {
+    max-width: 50px;
+  }
 `;

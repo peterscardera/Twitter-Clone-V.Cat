@@ -112,7 +112,7 @@ const FriendProfile = () => {
                 </BioContainer>
               </MiddleContainer>
               <ActionBar>
-                <StyledButton> Tweets </StyledButton>
+                <StyledButton style={{color:"lightgray"}}> Tweets </StyledButton>
                 <StyledButton> Media </StyledButton>
                 <StyledButton> Likes </StyledButton>
               </ActionBar>
