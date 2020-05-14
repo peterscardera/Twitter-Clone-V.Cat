@@ -15,7 +15,7 @@ const Liked = ({ tweetLikedStatus }) => {
     //-----------------IF CLICKED----------
 
     try {
-      let data = await fetch(`/api/tweet/${tweetLikedStatus.id}/like`, {
+      let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/tweet/${tweetLikedStatus.id}/like`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

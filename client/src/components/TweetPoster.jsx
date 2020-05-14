@@ -12,7 +12,7 @@ const TweetPoster = () => {
 
   const postTweet = async () => {
     try {
-      let data = await fetch(`/api/tweet`, {
+      let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/tweet`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const TweetPoster = () => {
       });
       //if success fecth the new feed and bring it to the FE State to cause a re-render
       if (data.status === 200) {
-        let dataWithPost = await fetch("/api/me/home-feed", {
+        let dataWithPost = await fetch("https://bootcamptwitterclone.herokuapp.com/api/me/home-feed", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

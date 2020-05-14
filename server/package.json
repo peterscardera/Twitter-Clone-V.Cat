@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
-  "proxy": "http://localhost:31415",
   "keywords": [],
   "author": "",
   "license": "ISC",

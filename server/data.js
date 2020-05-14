@@ -2,8 +2,8 @@ const users = {
   diplomog: {
     handle: 'diplomog',
     displayName: 'Palmerston',
-    avatarSrc: '/assets/diplomog-avatar.jpg',
-    bannerSrc: '/assets/diplomog-banner.jpeg',
+    avatarSrc: 'http://placekitten.com/200/300',
+    bannerSrc: 'https://unsplash.it/1500/500?random',
     location: 'Whitehall',
     url: 'http://fco.gov.uk',
     joined: '2016-02-02T12:00',
@@ -15,8 +15,8 @@ const users = {
   treasurymog: {
     handle: 'treasurymog',
     displayName: 'Gladstone, Esq.',
-    avatarSrc: '/assets/treasurymog-avatar.jpg',
-    bannerSrc: '/assets/treasurymog-banner.jpeg',
+    avatarSrc: 'http://placekitten.com/200/300',
+    bannerSrc: 'https://unsplash.it/1500/500?random',
     location: 'Whitehall, London',
     url: undefined,
     joined: '2016-10-12T12:00',
@@ -67,7 +67,7 @@ const tweets = {
     media: [
       {
         type: 'img',
-        url: '/assets/ENRXDPKWwAEJqFu.jpeg',
+        url: 'https://unsplash.it/340/200?random',
       },
     ],
   },
@@ -108,7 +108,7 @@ Maybe a more diplomatic approach will work 🤔`,
     media: [
       {
         type: 'img',
-        url: '/assets/diplomog-yarn.png',
+        url: 'https://unsplash.it/340/200?random',
       },
     ],
   },
@@ -125,7 +125,7 @@ Special wishes to all my diplomats, far from home at this time of year, serving 
     media: [
       {
         type: 'img',
-        url: '/assets/EMoH94cXYAAM5Jj.jpeg',
+        url: 'https://unsplash.it/340/200?random',
       },
     ],
   },
@@ -144,7 +144,7 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     media: [
       {
         type: 'img',
-        url: '/assets/ENH2rRrWwAARmsZ.jpeg',
+        url: 'https://unsplash.it/340/200?random',
       },
       // {
       //   type: 'img',

@@ -14,7 +14,7 @@ const Followers = () => {
   useEffect(() => {
     const retrievedFollowersD = async () => {
       try {
-        let data = await fetch(`/api/${handlerFromPath}/followers`, {
+        let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/${handlerFromPath}/followers`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const FollowerDetails = ({ aFriend }) => {
     const followRequest = async () => {
       if (buttonState === true) {
         try {
-          let data = await fetch(`/api/${aFriend.handle}/follow`, {
+          let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/${aFriend.handle}/follow`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const FollowerDetails = ({ aFriend }) => {
         }
       } else if (buttonState === false) {
         try {
-          let data = await fetch(`/api/${aFriend.handle}/unfollow`, {
+          let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/${aFriend.handle}/unfollow`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

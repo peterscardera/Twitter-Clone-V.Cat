@@ -50,7 +50,7 @@ export const FeedContextProvider = ({ children }) => {
     if (homeFeedState.retrievedData === false) {
       const tweetFeedData = async () => {
         try {
-          let data = await fetch("/api/me/home-feed", {
+          let data = await fetch("https://bootcamptwitterclone.herokuapp.com/api/me/home-feed", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

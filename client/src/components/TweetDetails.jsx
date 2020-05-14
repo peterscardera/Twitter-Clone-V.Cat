@@ -20,7 +20,7 @@ const TweetDetails = () => {
     // console.log(tweetIdFromPath)
     const tweetDataDetails = async () => {
       try {
-        let data = await fetch(`/api/tweet/${tweetIdFromPath}`, {
+        let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/tweet/${tweetIdFromPath}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

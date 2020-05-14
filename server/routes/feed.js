@@ -3,8 +3,14 @@
 */
 const lodash = require('lodash');
 const router = require('express').Router();
+var cors = require('cors')
 
 const data = require('../data');
+
+var corsOptions = {
+  origin: 'https://twitterclone-bc.firebaseapp.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const {
   CURRENT_USER_HANDLE,
@@ -35,7 +41,7 @@ const formatTweetResponse = tweets => {
   return { tweetsById, tweetIds };
 };
 
-router.get('/api/me/home-feed', (req, res) => {
+router.get('/api/me/home-feed', cors(corsOptions),(req, res) => {
   const relevantTweets = getTweetsForUser(CURRENT_USER_HANDLE);
 
   const { tweetsById, tweetIds } = formatTweetResponse(relevantTweets);
@@ -46,7 +52,7 @@ router.get('/api/me/home-feed', (req, res) => {
   });
 });
 
-router.get('/api/:handle/feed', (req, res) => {
+router.get('/api/:handle/feed',cors(corsOptions), (req, res) => {
   const { handle } = req.params;
 
   const tweets = getTweetsFromUser(handle);

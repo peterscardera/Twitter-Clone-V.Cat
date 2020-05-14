@@ -9,7 +9,7 @@ export const CurrentUserProvider = ({ children }) => {
   React.useEffect(() => {
     const profileData = async () => {
       try {
-        let data = await fetch("/api/me/profile", {
+        let data = await fetch("https://bootcamptwitterclone.herokuapp.com/api/me/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

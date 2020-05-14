@@ -25,7 +25,7 @@ const FriendProfile = () => {
   useEffect(() => {
     const clickedProfile = async () => {
       try {
-        let data = await fetch(`/api/${profileId}/profile`, {
+        let data = await fetch(`https://bootcamptwitterclone.herokuapp.com/api/${profileId}/profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
