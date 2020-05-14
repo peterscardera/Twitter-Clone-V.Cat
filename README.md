@@ -25,6 +25,9 @@ Currently signed in as default as GladStone, Esq @treasurymog. Following 2 other
 Node.js - Backend
 React & Styled-components  - FrontEnd
 
+### Known bugs
+- Unfollowing and afterwards retweeting a users tweet will cause a bug (Tweet doesn't exist in state).
+
 ### Authors
 Josh Commeau. 
 Scott Morin.

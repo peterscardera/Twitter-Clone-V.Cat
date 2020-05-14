@@ -19,9 +19,10 @@ const HomeFeed = () => {
             homeFeedState.tweetsByIds != null &&
             homeFeedState.tweetId.map((orderId, i) => {
               return (
-                <StyledSpan>
+                <StyledSpan
+                key={i}>
                   <Tweets
-                    key={i}
+                    
                     orderId={orderId}
                     tweetState={homeFeedState.tweetsByIds}
                   />

@@ -19,7 +19,7 @@ const Footer = () => {
 
     })
     
-console.log(matchedResults)
+// console.log(matchedResults)
  
 
   return (
