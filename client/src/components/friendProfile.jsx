@@ -14,10 +14,10 @@ import { FiMessageCircle } from "react-icons/fi";
 
 const FriendProfile = () => {
   const { homeFeedState } = React.useContext(FeedContext);
-  console.log(homeFeedState, "HOMEFEESTATE");
+ 
 
   const [clickedProfileState, setClickedProfileState] = useState(null);
-  console.log(clickedProfileState, "PROFILE");
+ 
   const [tweetFeed, setTweetFeed] = useState("");
 
   let { profileId } = useParams();

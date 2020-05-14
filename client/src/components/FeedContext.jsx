@@ -31,7 +31,7 @@ const reducer = (state, action) => {
       };
     }
     case "updatePost": {
-        console.log(action, "INSIDE UPDATE POSE ***")
+        // console.log(action, "INSIDE UPDATE POSE ***")
       return {
         ...state,
         tweetsByIds: action.tweetsById,
@@ -44,7 +44,7 @@ const reducer = (state, action) => {
 export const FeedContextProvider = ({ children }) => {
   const [homeFeedState, dispatch] = useReducer(reducer, INITIAL_DATA);
 
-  console.log(homeFeedState);
+  // console.log(homeFeedState);
   useEffect(() => {
     //only fetch on the first render if data feed has never been retrieved
     if (homeFeedState.retrievedData === false) {

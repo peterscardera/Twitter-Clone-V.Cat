@@ -11,7 +11,7 @@ const FollowerDetails = ({ aFriend }) => {
   );
 
   const [buttonState, setButtonState] = useState(null);
-  console.log(buttonState, "BUTTONSTATUS");
+  // console.log(buttonState, "BUTTONSTATUS");
 
   useEffect(() => {
     //we want to follow cause atm we are not
@@ -27,7 +27,7 @@ const FollowerDetails = ({ aFriend }) => {
             },
           });
           setCopyIsBeingFollowed(true);
-          console.log(data, "follow");
+          // console.log(data, "follow");
         } catch (err) {
           console.log("error", err);
         }
@@ -41,7 +41,7 @@ const FollowerDetails = ({ aFriend }) => {
             },
           });
           setCopyIsBeingFollowed(false);
-          console.log(data, "following");
+          // console.log(data, "following");
         } catch (err) {
           console.log("error", err);
         }
@@ -50,7 +50,7 @@ const FollowerDetails = ({ aFriend }) => {
 
     followRequest();
   }, [buttonState]);
-  console.log(setCopyIsBeingFollowed);
+  // console.log(setCopyIsBeingFollowed);
   return (
     <>
       <Wrapper>
