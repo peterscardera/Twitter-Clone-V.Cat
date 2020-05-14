@@ -41,7 +41,7 @@ const TweetDetails = () => {
     tweetDataDetails();
   }, []);
 
-  console.log(individualTweet);
+  // console.log(individualTweet);
   return (
     <React.Fragment>
       <Layout>
